@@ -376,6 +376,18 @@
     </div>
   </section>
 
+  <!-- AI — AI-produced UGC and DTC work, rendered from AI_PROJECTS -->
+  <section id="ai">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">AI production</span>
+        <h2>AI UGC &amp; DTC</h2>
+        <p>AI-built UGC and direct-to-consumer ad concepts — vertical, captioned and cut for social.</p>
+      </div>
+      <div id="ai-mount"></div>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section id="services">
     <div class="wrap">
@@ -578,19 +590,34 @@ var PROJECTS = [
   }
 ];
 
-(function renderWork(){
-  var mount = document.getElementById('work-mount');
+var AI_PROJECTS = [
+  {
+    title:  "AI Portfolio: CreaCrunch: 5g of Creatine in One Bite (AI Spec Ad)",
+    desc:   "Self-directed AI spec ad — concept, generation and edit.",
+    tags:   ["AI", "DTC"],
+    spec:   true,
+    poster: "https://i.ytimg.com/vi/I6-IeDOywPo/maxresdefault.jpg",
+    href:   "https://youtu.be/I6-IeDOywPo"
+  },
+  {
+    title:  "AI Portfolio: Dusk Magnesium: UGC-Style Story Ad (AI Spec Concept)",
+    desc:   "Self-directed AI UGC-style story ad — concept, generation and edit.",
+    tags:   ["AI", "UGC"],
+    spec:   true,
+    poster: "https://i.ytimg.com/vi/CPUT1vnK8fk/maxresdefault.jpg",
+    href:   "https://youtu.be/CPUT1vnK8fk"
+  }
+];
 
-  if(!PROJECTS.length){
-    mount.innerHTML =
-      '<div class="empty reveal">' +
-        '<span class="eyebrow">In progress</span>' +
-        '<h3>New work lands here soon.</h3>' +
-        '<p>Finished projects and experiments will be added as they\'re completed.</p>' +
-      '</div>';
+function renderCards(mountId, list, emptyCopy){
+  var mount = document.getElementById(mountId);
+  if(!mount) return;
+
+  if(!list.length){
+    mount.innerHTML = emptyCopy;
   } else {
     var html = '<div class="grid-2">';
-    PROJECTS.forEach(function(p){
+    list.forEach(function(p){
       var media = '';
       var tcls = 'thumb' + (p.vertical ? ' v' : '');
       if(p.video){
@@ -627,7 +654,23 @@ var PROJECTS = [
     html += '</div>';
     mount.innerHTML = html;
   }
+}
 
+renderCards('work-mount', PROJECTS,
+  '<div class="empty reveal">' +
+    '<span class="eyebrow">In progress</span>' +
+    '<h3>New work lands here soon.</h3>' +
+    '<p>Finished projects and experiments will be added as they\'re completed.</p>' +
+  '</div>');
+
+renderCards('ai-mount', AI_PROJECTS,
+  '<div class="empty reveal">' +
+    '<span class="eyebrow">In progress</span>' +
+    '<h3>New AI work lands here soon.</h3>' +
+    '<p>AI UGC and DTC concepts will appear here as they\'re completed.</p>' +
+  '</div>');
+
+(function revealAll(){
   // reveal — covers initial markup and anything just rendered
   var els = document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){
