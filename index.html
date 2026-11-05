@@ -150,6 +150,11 @@
   .sec-head{max-width:660px;margin-bottom:60px}
   .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.5rem);margin-bottom:18px}
   .sec-head p{color:var(--muted);font-size:1.1rem}
+  .sub-head{
+    margin:76px 0 30px;
+    font-size:clamp(1.35rem,2.6vw,1.7rem);
+    font-weight:600;letter-spacing:-.015em;
+  }
 
   /* ---------- showreel (only renders once showreel.mp4 exists) ---------- */
   .showreel[hidden]{display:none}
@@ -385,6 +390,9 @@
         <p>AI-built UGC and direct-to-consumer ad concepts — vertical, captioned and cut for social.</p>
       </div>
       <div id="ai-mount"></div>
+
+      <h3 class="sub-head reveal">Hook variations</h3>
+      <div id="hook-mount"></div>
     </div>
   </section>
 
@@ -617,6 +625,25 @@ var AI_PROJECTS = [
   }
 ];
 
+var HOOK_PROJECTS = [
+  {
+    title:  "AI Portfolio: Crea crunch Opening-hook variations.",
+    desc:   "Self-directed opening-hook variants for the CreaCrunch spec ad.",
+    tags:   ["AI", "HOOK"],
+    spec:   true,
+    poster: "https://i.ytimg.com/vi/2gjn0QmbAbY/maxresdefault.jpg",
+    href:   "https://youtu.be/2gjn0QmbAbY"
+  },
+  {
+    title:  "AI Portfolio: Dusk Magnesium Opening-hook variations.",
+    desc:   "Self-directed opening-hook variants for the Dusk Magnesium spec ad.",
+    tags:   ["AI", "HOOK"],
+    spec:   true,
+    poster: "https://i.ytimg.com/vi/DyR3Rputctc/maxresdefault.jpg",
+    href:   "https://youtu.be/DyR3Rputctc"
+  }
+];
+
 function renderCards(mountId, list, emptyCopy){
   var mount = document.getElementById(mountId);
   if(!mount) return;
@@ -676,6 +703,12 @@ renderCards('ai-mount', AI_PROJECTS,
     '<span class="eyebrow">In progress</span>' +
     '<h3>New AI work lands here soon.</h3>' +
     '<p>AI UGC and DTC concepts will appear here as they\'re completed.</p>' +
+  '</div>');
+
+renderCards('hook-mount', HOOK_PROJECTS,
+  '<div class="empty reveal">' +
+    '<span class="eyebrow">In progress</span>' +
+    '<h3>More hook variations soon.</h3>' +
   '</div>');
 
 (function revealAll(){
